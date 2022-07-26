@@ -50,9 +50,7 @@ My assignment this week was to build a command-line application intended to mana
 
 To run this application, first you must install Node. Then, enter in your command line:
 
-`npm init`
-
-`npm i inquirer@8.2.4`
+`npm install`
 
 ## Technologies Used
 
