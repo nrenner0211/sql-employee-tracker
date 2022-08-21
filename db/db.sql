@@ -1,5 +1,0 @@
-DROP DATABASE IF EXISTS challenge12;
-
-CREATE DATABASE challenge12;
-
-USE challenge12;

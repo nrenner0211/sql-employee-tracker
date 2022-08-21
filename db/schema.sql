@@ -1,25 +1,39 @@
--- this will ensure you start with a clean slate by deleting existing tables when file is ran
+DROP DATABASE IF EXISTS employee_db;
 
-DROP TABLE IF EXISTS department;
-DROP TABLE IF EXISTS role;
-DROP TABLE IF EXISTS employee;
+CREATE DATABASE employee_db;
+USE employee_db;
 
-CREATE TABLE department (
-  id INTEGER AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(30) NOT NULL
-)
+CREATE TABLE departments (
+  id INT NOT NULL AUTO_INCREMENT,
+  dept VARCHAR(30) NOT NULL,
+  PRIMARY KEY(id)
+);
 
-CREATE TABLE role (
-    id INTEGER PRIMARY KEY,
-    title VARCHAR(30) NOT NULL,
-    salary INTEGER NOT NULL,
-    FOREIGN KEY (department_id) REFERENCES department(id) ON DELETE SET NULL
-)
+DESCRIBE departments;
 
-CREATE TABLE employee (
-    id INTEGER AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(30) NOT NULL,
-    last_name VARCHAR(30) NOT NULL,
-    role_id 
-    manager_id
-)
+CREATE TABLE roles (
+  id INT NOT NULL AUTO_INCREMENT,
+  title VARCHAR(40) NOT NULL,
+  salary DECIMAL,
+  dept_id INT,
+  PRIMARY KEY(id),
+  FOREIGN KEY(dept_id) REFERENCES departments(id)
+);
+
+DESCRIBE roles;
+
+CREATE TABLE employees (
+  id INT NOT NULL AUTO_INCREMENT,
+  first_name VARCHAR(30) NOT NULL,
+  last_name VARCHAR(30) NOT NULL,
+  dept_id INT,
+  role_id INT NOT NULL,
+  mangr_id INT,
+  is_mangr BOOLEAN,
+  PRIMARY KEY(id),
+  FOREIGN KEY(dept_id) REFERENCES departments(id),
+  FOREIGN KEY(role_id) REFERENCES roles(id),
+  FOREIGN KEY(mangr_id) REFERENCES employees(id)
+);
+
+DESCRIBE employees;
